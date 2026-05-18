@@ -1,0 +1,141 @@
+@page "/products/details/{id:int}"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using ProductManagement.Features.Data.Models
+@using MudBlazor
+@inject IProductService ProductService
+@inject NavigationManager Navigation
+
+<PageTitle>Product Details</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
+    @if (product == null)
+    {
+        <MudProgressLinear Indeterminate="true" Color="Color.Primary" Class="my-4" />
+    }
+    else if (productNotFound)
+    {
+        <MudAlert Severity="Severity.Error">
+            Product not found.
+        </MudAlert>
+        <MudButton Variant="Variant.Outlined" OnClick="GoToList" Class="mt-4">
+            Back to Products
+        </MudButton>
+    }
+    else
+    {
+        <MudCard>
+            <MudCardHeader>
+                <div class="d-flex justify-space-between align-center">
+                    <MudText Typo="Typo.h5">Product Details</MudText>
+                    <MudChip Color="@GetStockColor(product.StockQuantity)" 
+                            Size="Size.Small" 
+                            T="int">
+                        Stock: @product.StockQuantity
+                    </MudChip>
+                </div>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudGrid>
+                    <MudItem xs="12" md="6">
+                        <MudText Typo="Typo.subtitle1" Class="mb-2">Product Information</MudText>
+                        <MudText Class="mb-2">
+                            <strong>Name:</strong> @product.Name
+                        </MudText>
+                        <MudText Class="mb-2">
+                            <strong>Category:</strong> @(product.Category?.Name ?? "N/A")
+                        </MudText>
+                        <MudText Class="mb-2">
+                            <strong>Brand:</strong> @(product.Brand?.Name ?? "N/A")
+                        </MudText>
+                        <MudText Class="mb-2">
+                            <strong>Supplier:</strong> @(product.Supplier?.Name ?? "N/A")
+                        </MudText>
+                        <MudText Class="mb-2">
+                            <strong>Price:</strong> $@product.Price.ToString("F2")
+                        </MudText>
+                        <MudText Class="mb-2">
+                            <strong>Stock Quantity:</strong> @product.StockQuantity
+                        </MudText>
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudText Typo="Typo.subtitle1" Class="mb-2">Description</MudText>
+                        <MudText Class="mb-2">
+                            @product.Description ?? "No description available."
+                        </MudText>
+                    </MudItem>
+                    <MudItem xs="12" class="mt-4">
+                        <MudText Typo="Typo.subtitle1" Class="mb-2">Timestamps</MudText>
+                        <MudText Class="mb-2">
+                            <strong>Created:</strong> @product.CreatedAt.ToString("MM/dd/yyyy HH:mm:ss")
+                        </MudText>
+                        <MudText Class="mb-2">
+                            <strong>Last Updated:</strong> @product.UpdatedAt.ToString("MM/dd/yyyy HH:mm:ss")
+                        </MudText>
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Outlined" OnClick="GoToList">
+                    Back to Products
+                </MudButton>
+                <AuthorizeView Roles="Admin">
+                    <Authorized>
+                        <MudButton Variant="Variant.Filled" 
+                                   Color="Color.Primary" 
+                                   StartIcon="@Icons.Material.Filled.Edit"
+                                   OnClick="EditProduct">
+                            Edit Product
+                        </MudButton>
+                    </Authorized>
+                </AuthorizeView>
+            </MudCardActions>
+        </MudCard>
+    }
+</MudContainer>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Product? product;
+    private bool productNotFound = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProduct();
+    }
+
+    private async Task LoadProduct()
+    {
+        try
+        {
+            product = await ProductService.GetProductByIdAsync(Id);
+            if (product == null)
+            {
+                productNotFound = true;
+            }
+        }
+        catch (Exception)
+        {
+            productNotFound = true;
+        }
+    }
+
+    private void GoToList()
+    {
+        Navigation.NavigateTo("/products");
+    }
+
+    private void EditProduct()
+    {
+        Navigation.NavigateTo($"/products/edit/{Id}");
+    }
+
+    private Color GetStockColor(int stock)
+    {
+        if (stock == 0) return Color.Error;
+        if (stock < 10) return Color.Warning;
+        return Color.Success;
+    }
+}

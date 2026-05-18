@@ -1,0 +1,96 @@
+﻿@page "/login"
+@layout AuthLayout
+@inject IUserService AuthService
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Login</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="mt-8">
+    <MudCard>
+        <MudCardHeader>
+            <MudText Typo="Typo.h4" Class="text-center">Login</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+                <MudTextField T="string" 
+                             Label="Username" 
+                             @bind-Value="loginModel.Username" 
+                             Margin="Margin.Normal"
+                             Required="true"
+                             RequiredError="Username is required" />
+                
+                <MudTextField T="string" 
+                             Label="Password" 
+                             @bind-Value="loginModel.Password" 
+                             Margin="Margin.Normal"
+                             InputType="@(showPassword ? InputType.Text : InputType.Password)"
+                             Required="true"
+                             RequiredError="Password is required"
+                             Adornment="Adornment.End"
+                             AdornmentIcon="@(showPassword ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility)"
+                             OnAdornmentClick="TogglePasswordVisibility"
+                             AdornmentAriaLabel="Toggle password visibility" />
+            </EditForm>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Filled" 
+                       Color="Color.Primary" 
+                       OnClick="async () => await HandleLogin()"
+                       Class="flex-grow-1">
+                Login
+            </MudButton>
+        </MudCardActions>
+        <MudCardActions>
+            <MudText Class="text-center flex-grow-1">
+                Don't have an account? 
+                <MudLink Href="/register" Color="Color.Primary">Register here</MudLink>
+            </MudText>
+        </MudCardActions>
+    </MudCard>
+</MudContainer>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mt-4">@errorMessage</MudAlert>
+}
+
+@code {
+    private LoginModel loginModel = new();
+    private string? errorMessage;
+    private bool showPassword = false;
+
+    private void TogglePasswordVisibility()
+    {
+        showPassword = !showPassword;
+    }
+
+    private class LoginModel
+    {
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+    }
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            var user = await AuthService.Login(loginModel.Username, loginModel.Password);
+            
+            if (user != null)
+            {
+                // Use JavaScript to navigate to the actual HTTP endpoint
+                var url = $"/api/auth/login-handler?username={Uri.EscapeDataString(loginModel.Username)}&password={Uri.EscapeDataString(loginModel.Password)}";
+                await JSRuntime.InvokeVoidAsync("eval", $"window.location.href = '{url}'");
+            }
+            else
+            {
+                errorMessage = "Invalid username or password";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Login failed: {ex.Message}";
+        }
+    }
+}

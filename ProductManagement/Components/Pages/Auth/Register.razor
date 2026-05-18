@@ -1,0 +1,182 @@
+@page "/register"
+@layout AuthLayout
+@inject IUserService AuthService
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+@using ProductManagement.Features.Data.Models
+
+<PageTitle>Register</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="mt-8">
+    <MudCard>
+        <MudCardHeader>
+            <MudText Typo="Typo.h4" Class="text-center">Register</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudForm @ref="form">
+                <MudTextField T="string" 
+                             Label="Email" 
+                             @bind-Value="registerModel.Email" 
+                             Margin="Margin.Normal"
+                             Required="true"
+                             RequiredError="Email is required"
+                             Validation="@((string email) => ValidateEmail(email))" />
+                
+                <MudTextField T="string" 
+                             Label="Username" 
+                             @bind-Value="registerModel.Username" 
+                             Margin="Margin.Normal"
+                             Required="true"
+                             RequiredError="Username is required" />
+                
+                <MudTextField T="string" 
+                             Label="Password" 
+                             @bind-Value="registerModel.Password" 
+                             Margin="Margin.Normal"
+                             InputType="@(showPassword ? InputType.Text : InputType.Password)"
+                             Required="true"
+                             RequiredError="Password is required"
+                             Validation="@((string password) => ValidatePassword(password))"
+                             Adornment="Adornment.End"
+                             AdornmentIcon="@(showPassword ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility)"
+                             OnAdornmentClick="TogglePasswordVisibility"
+                             AdornmentAriaLabel="Toggle password visibility" />
+                
+                <MudTextField T="string" 
+                             Label="Confirm Password" 
+                             @bind-Value="registerModel.ConfirmPassword" 
+                             Margin="Margin.Normal"
+                             InputType="@(showConfirmPassword ? InputType.Text : InputType.Password)"
+                             Required="true"
+                             RequiredError="Please confirm your password"
+                             Validation="@((string confirmPassword) => ValidateConfirmPassword(confirmPassword))"
+                             Adornment="Adornment.End"
+                             AdornmentIcon="@(showConfirmPassword ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility)"
+                             OnAdornmentClick="ToggleConfirmPasswordVisibility"
+                             AdornmentAriaLabel="Toggle confirm password visibility" />
+            </MudForm>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Filled" 
+                       Color="Color.Primary" 
+                       OnClick="HandleRegister"
+                       Class="flex-grow-1">
+                Register
+            </MudButton>
+        </MudCardActions>
+        <MudCardActions>
+            <MudText Class="text-center flex-grow-1">
+                Already have an account? 
+                <MudLink Href="/login" Color="Color.Primary">Login here</MudLink>
+            </MudText>
+        </MudCardActions>
+    </MudCard>
+</MudContainer>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mt-4">@errorMessage</MudAlert>
+}
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-4">@successMessage</MudAlert>
+}
+
+@code {
+    private MudForm form;
+    private RegisterModel registerModel = new();
+    private string? errorMessage;
+    private string? successMessage;
+    private bool showPassword = false;
+    private bool showConfirmPassword = false;
+
+    private class RegisterModel
+    {
+        public string Email { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string ConfirmPassword { get; set; } = string.Empty;
+    }
+
+    private string? ValidateEmail(string? email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            return "Email is required";
+
+        if (!email.Contains("@"))
+            return "Please enter a valid email address";
+
+        return null;
+    }
+
+    private string? ValidatePassword(string? password)
+    {
+        if (string.IsNullOrWhiteSpace(password))
+            return "Password is required";
+
+        if (password.Length < 6)
+            return "Password must be at least 6 characters long";
+
+        return null;
+    }
+
+    private string? ValidateConfirmPassword(string? confirmPassword)
+    {
+        if (string.IsNullOrWhiteSpace(confirmPassword))
+            return "Please confirm your password";
+
+        if (confirmPassword != registerModel.Password)
+            return "Passwords do not match";
+
+        return null;
+    }
+
+    private void TogglePasswordVisibility()
+    {
+        showPassword = !showPassword;
+    }
+
+    private void ToggleConfirmPasswordVisibility()
+    {
+        showConfirmPassword = !showConfirmPassword;
+    }
+
+    private async Task HandleRegister()
+    {
+        await form.ValidateAsync();
+
+        if (!form.IsValid)
+        {
+            return;
+        }
+
+        try
+        {
+            errorMessage = string.Empty;
+            successMessage = string.Empty;
+
+            var newUser = new User
+            {
+                Email = registerModel.Email,
+                Username = registerModel.Username,
+                Password = registerModel.Password, // UserService will hash this
+                Name = registerModel.Username,
+                Role = "User"
+            };
+
+            await AuthService.Register(newUser);
+
+            successMessage = "Registration successful! Redirecting to login...";
+            
+            // Auto-login after successful registration
+            await Task.Delay(1500); // Brief delay to show success message
+            var url = $"/api/auth/login-handler?username={Uri.EscapeDataString(registerModel.Username)}&password={Uri.EscapeDataString(registerModel.Password)}";
+            await JSRuntime.InvokeVoidAsync("eval", $"window.location.href = '{url}'");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Registration failed: {ex.Message}";
+        }
+    }
+}

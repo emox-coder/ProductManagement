@@ -1,0 +1,70 @@
+@page "/debug/users"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using ProductManagement.Features.Data
+@using ProductManagement.Features.Data.Models
+@using MudBlazor
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@inject AppDbContext DbContext
+@attribute [Authorize]
+
+<PageTitle>Debug Users</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
+    <MudCard>
+        <MudCardHeader>
+            <MudText Typo="Typo.h5">Database Users Debug</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            @if (users == null)
+            {
+                <MudProgressLinear Indeterminate="true" Color="Color.Primary" Class="my-4" />
+            }
+            else if (users.Count == 0)
+            {
+                <MudAlert Severity="Severity.Warning">
+                    No users found in database. You need to register first!
+                </MudAlert>
+            }
+            else
+            {
+                <MudText Typo="Typo.h6" Class="mb-3">Found @users.Count user(s):</MudText>
+                
+                @foreach (var user in users)
+                {
+                    <MudCard Class="mb-3">
+                        <MudCardContent>
+                            <MudText><strong>Username:</strong> @user.Username</MudText>
+                            <MudText><strong>Name:</strong> @user.Name</MudText>
+                            <MudText><strong>Email:</strong> @user.Email</MudText>
+                            <MudText><strong>Password Hash:</strong> <code>@user.Password</code></MudText>
+                            <MudText><strong>Role:</strong> @user.Role</MudText>
+                        </MudCardContent>
+                    </MudCard>
+                }
+            }
+            
+            <MudButton Variant="Variant.Filled" 
+                       Color="Color.Primary" 
+                       OnClick="RefreshUsers"
+                       Class="mt-3">
+                Refresh
+            </MudButton>
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+@code {
+    private List<User>? users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshUsers();
+    }
+
+    private async Task RefreshUsers()
+    {
+        users = await DbContext.Users.ToListAsync();
+    }
+}

@@ -1,0 +1,27 @@
+﻿<CascadingAuthenticationState>
+    <Router AppAssembly="typeof(Program).Assembly">
+        <Found Context="routeData">
+           <AuthorizeRouteView
+               RouteData="routeData"
+               DefaultLayout="typeof(Layout.MainLayout)">
+                <NotAuthorized>
+                    <MudText Color="Color.Error">
+                        You are not authorized. Redirecting...
+                    </MudText>
+
+                    <RedirectToLogin/>
+                </NotAuthorized>
+                <Authorizing>
+                    <MudText>Checking authorization...</MudText>
+                </Authorizing>
+           </AuthorizeRouteView>
+
+           <FocusOnNavigate RouteData="routeData" Selector="h1"/>
+        </Found>
+
+        <NotFound>
+            <MudText>Page not found</MudText>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
+

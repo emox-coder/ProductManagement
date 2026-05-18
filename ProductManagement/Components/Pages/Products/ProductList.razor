@@ -1,0 +1,276 @@
+@page "/products"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using ProductManagement.Features.Data.Models
+@using ProductManagement.Features.Data.Enums
+@using MudBlazor
+@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@inject IBrandService BrandService
+@inject ISupplierService SupplierService
+@inject NavigationManager Navigation
+@inject IDialogService DialogService
+
+<PageTitle>Products</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudCard>
+        <MudCardHeader>
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.h5">Product Management</MudText>
+                        <MudSpacer/>
+                        <AuthorizeView Roles="Admin">
+                        <MudButton Variant="Variant.Filled" 
+                                   Color="Color.Primary" 
+                                   Style="margin-left:20px"
+                                   StartIcon="@Icons.Material.Filled.Add"
+                                   OnClick="() => NavigateToAddProduct()">
+                            Add Product
+                        </MudButton>
+                        </AuthorizeView>
+            </div>
+        </MudCardHeader>
+        <MudCardContent>
+            <!-- Search and Filter -->
+            <div class="d-flex gap-4 mb-4">
+                <MudTextField T="string" 
+                             Label="Search products..." 
+                             @bind-Value="searchTerm" 
+                             Immediate="true"
+                             Variant="Variant.Outlined"
+                             Adornment="Adornment.Start"
+                             AdornmentIcon="@Icons.Material.Filled.Search"
+                             Class="flex-grow-1" />
+                
+                <MudSelect T="int?" 
+                          Label="Category" 
+                          @bind-Value="selectedCategoryId" 
+                          Variant="Variant.Outlined"
+                          Class="width-200">
+                    <MudSelectItem T="int?" Value="@((int?)null)">All Categories</MudSelectItem>
+                    @if (categories != null)
+                    {
+                        @foreach (var cat in categories)
+                        {
+                            <MudSelectItem T="int?" Value="@((int?)cat.Id)">@cat.Name</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+            </div>
+
+            <!-- Products Grid -->
+            @if (filteredProducts == null)
+            {
+                <MudProgressLinear Indeterminate="true" Color="Color.Primary" Class="my-4" />
+            }
+            else if (filteredProducts.Count == 0)
+            {
+                <MudAlert Severity="Severity.Info">
+                    No products found. Try adjusting your search or filters.
+                </MudAlert>
+            }
+            else
+            {
+                <MudTable Items="@filteredProducts" 
+                          Hover="true" 
+                          Breakpoint="Breakpoint.Md"
+                          Striped="true"
+                          Dense="true">
+                    <HeaderContent>
+                        <MudTh>Name</MudTh>
+                        <MudTh>Category</MudTh>
+                        <MudTh>Brand</MudTh>
+                        <MudTh>Supplier</MudTh>
+                        <MudTh>Price</MudTh>
+                        <MudTh>Stock</MudTh>
+                        <MudTh>Actions</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Name">@context.Name</MudTd>
+                        <MudTd DataLabel="Category">@(context.Category?.Name ?? "N/A")</MudTd>
+                        <MudTd DataLabel="Brand">@(context.Brand?.Name ?? "N/A")</MudTd>
+                        <MudTd DataLabel="Supplier">@(context.Supplier?.Name ?? "N/A")</MudTd>
+                        <MudTd DataLabel="Price">$@context.Price.ToString("F2")</MudTd>
+                        <MudTd DataLabel="StockQuantity">
+                            <MudChip Color="@GetStockColor(context.StockQuantity)" 
+                                    Size="Size.Small" 
+                                    T="int">
+                                @context.StockQuantity
+                            </MudChip>
+                        </MudTd>
+                        <MudTd DataLabel="Actions">
+                            <div class="d-flex gap-2">
+                                <MudButton Size="Size.Small" 
+                                           Variant="Variant.Outlined" 
+                                           Color="Color.Info"
+                                           StartIcon="@Icons.Material.Filled.Visibility"
+                                           OnClick="() => NavigateToDetails(context.Id)">
+                                    View
+                                </MudButton>
+                                <AuthorizeView Roles="Admin" Context="authContext">
+                                    <Authorized>
+                                        <MudButton Size="Size.Small" 
+                                                   Variant="Variant.Outlined" 
+                                                   Color="Color.Primary"
+                                                   StartIcon="@Icons.Material.Filled.Edit"
+                                                   OnClick="() => NavigateToEditProduct(context.Id)">
+                                            Edit
+                                        </MudButton>
+                                        <MudButton Size="Size.Small" 
+                                                   Variant="Variant.Outlined" 
+                                                   Color="Color.Error"
+                                                   StartIcon="@Icons.Material.Filled.Delete"
+                                                   OnClick="() => DeleteProduct(context)">
+                                            Delete
+                                        </MudButton>
+                                    </Authorized>
+                                </AuthorizeView>
+                            </div>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-4">@successMessage</MudAlert>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mt-4">@errorMessage</MudAlert>
+}
+
+<!-- Delete Confirmation Dialog -->
+<MudDialog @bind-Visible="showDeleteDialog" Options="new DialogOptions { CloseButton = false, FullWidth = true, MaxWidth = MaxWidth.ExtraSmall }">
+    <TitleContent>
+        <MudText Typo="Typo.h6">Delete Product</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText>
+            Are you sure you want to delete product '@deletingProduct.Name'? This action cannot be undone.
+        </MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="CloseDeleteDialog">Cancel</MudButton>
+        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="@(async () => await ConfirmDelete())">Delete</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    private List<Product>? products;
+    private List<Product>? filteredProducts;
+    private List<Category>? categories;
+    private string searchTerm = "";
+    private int? selectedCategoryId;
+    private string? successMessage;
+    private string? errorMessage;
+    private bool showDeleteDialog = false;
+    private Product deletingProduct = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            categories = await CategoryService.GetAllCategoriesAsync();
+            await LoadProducts();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading data: {ex.Message}";
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await FilterProducts();
+    }
+
+    private async Task LoadProducts()
+    {
+        products = await ProductService.GetAllProductsAsync();
+        await FilterProducts();
+    }
+
+    private async Task FilterProducts()
+    {
+        if (products == null) return;
+
+        var query = products.AsEnumerable();
+
+        // Filter by category
+        if (selectedCategoryId.HasValue)
+        {
+            query = query.Where(p => p.CategoryId == selectedCategoryId.Value);
+        }
+
+        // Filter by search term
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(p => 
+                p.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                (p.Description != null && p.Description.ToLower().Contains(searchTerm.ToLower())));
+        }
+
+        filteredProducts = query.ToList();
+    }
+
+    private void NavigateToAddProduct()
+    {
+        Navigation.NavigateTo("/products/add");
+    }
+
+    private void NavigateToDetails(int productId)
+    {
+        Navigation.NavigateTo($"/products/details/{productId}");
+    }
+
+    private void NavigateToEditProduct(int productId)
+    {
+        Navigation.NavigateTo($"/products/edit/{productId}");
+    }
+
+    private void DeleteProduct(Product product)
+    {
+        deletingProduct = product;
+        showDeleteDialog = true;
+    }
+
+    private void CloseDeleteDialog()
+    {
+        showDeleteDialog = false;
+        deletingProduct = new();
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            await ProductService.DeleteProductAsync(deletingProduct.Id);
+            await LoadProducts();
+            successMessage = $"Product '{deletingProduct.Name}' deleted successfully";
+            errorMessage = null;
+            CloseDeleteDialog();
+            StateHasChanged();
+            await Task.Delay(2000);
+            successMessage = null;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to delete product: {ex.Message}";
+            successMessage = null;
+            StateHasChanged();
+        }
+    }
+
+    private Color GetStockColor(int stock)
+    {
+        if (stock == 0) return Color.Error;
+        if (stock < 10) return Color.Warning;
+        return Color.Success;
+    }
+}

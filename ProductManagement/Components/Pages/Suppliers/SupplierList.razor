@@ -1,0 +1,299 @@
+@page "/suppliers"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using ProductManagement.Features.Data.Models
+@inject ISupplierService SupplierService
+@inject IDialogService DialogService
+
+<PageTitle>Suppliers</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudCard>
+        <MudCardHeader>
+            <div class="d-flex justify-space-between align-center" style="width:100%">
+                <MudText Typo="Typo.h5">Supplier Management</MudText>
+                <AuthorizeView Roles="Admin">
+                    <Authorized>
+                        <MudButton Variant="Variant.Filled" 
+                                   Color="Color.Primary" 
+                                   StartIcon="@Icons.Material.Filled.Add"
+                                   OnClick="OpenAddDialog">
+                            Add Supplier
+                        </MudButton>
+                    </Authorized>
+                </AuthorizeView>
+            </div>
+        </MudCardHeader>
+        <MudCardContent>
+            <!-- Search -->
+            <div class="d-flex gap-4 mb-4">
+                <MudTextField T="string" 
+                             Label="Search suppliers..." 
+                             @bind-Value="searchTerm" 
+                             Immediate="true"
+                             Variant="Variant.Outlined"
+                             Adornment="Adornment.Start"
+                             AdornmentIcon="@Icons.Material.Filled.Search"
+                             Class="flex-grow-1" />
+            </div>
+
+            @if (filteredSuppliers == null)
+            {
+                <MudProgressLinear Indeterminate="true" />
+            }
+            else if (filteredSuppliers.Count == 0)
+            {
+                <MudAlert Severity="Severity.Info">
+                    No suppliers found.
+                </MudAlert>
+            }
+            else
+            {
+                <MudTable Items="@filteredSuppliers" 
+                          Hover="true" 
+                          Striped="true"
+                          Dense="true">
+                    <HeaderContent>
+                        <MudTh>Name</MudTh>
+                        <MudTh>Contact Person</MudTh>
+                        <MudTh>Email</MudTh>
+                        <MudTh>Phone</MudTh>
+                        <MudTh>Created</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Name">@context.Name</MudTd>
+                        <MudTd DataLabel="ContactPerson">@(context.ContactPerson ?? "—")</MudTd>
+                        <MudTd DataLabel="Email">@(context.Email ?? "—")</MudTd>
+                        <MudTd DataLabel="Phone">@(context.Phone ?? "—")</MudTd>
+                        <MudTd DataLabel="Created">@context.CreatedAt.ToString("MM/dd/yyyy")</MudTd>
+                        <MudTd DataLabel="Actions">
+                            <AuthorizeView Roles="Admin" Context="authContext">
+                                <Authorized>
+                                    <div class="d-flex gap-2">
+                                        <MudButton Size="Size.Small" 
+                                                   Variant="Variant.Outlined" 
+                                                   Color="Color.Primary"
+                                                   StartIcon="@Icons.Material.Filled.Edit"
+                                                   OnClick="() => OpenEditDialog(context)">
+                                            Edit
+                                        </MudButton>
+                                        <MudButton Size="Size.Small" 
+                                                   Variant="Variant.Outlined" 
+                                                   Color="Color.Error"
+                                                   StartIcon="@Icons.Material.Filled.Delete"
+                                                   OnClick="() => DeleteSupplier(context)">
+                                            Delete
+                                        </MudButton>
+                                    </div>
+                                </Authorized>
+                            </AuthorizeView>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-4">@successMessage</MudAlert>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mt-4">@errorMessage</MudAlert>
+}
+
+<!-- Delete Confirmation Dialog -->
+<MudDialog @bind-Visible="showDeleteDialog" Options="new DialogOptions { CloseButton = false, FullWidth = true, MaxWidth = MaxWidth.ExtraSmall }">
+    <TitleContent>
+        <MudText Typo="Typo.h6">Delete Supplier</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText>
+            Are you sure you want to delete supplier '@deletingSupplier.Name'? This action cannot be undone.
+        </MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="CloseDeleteDialog">Cancel</MudButton>
+        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="@(async () => await ConfirmDelete())">Delete</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<!-- Add/Edit Dialog -->
+<MudDialog @bind-Visible="dialogVisible" Options="dialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">@(isEditing ? "Edit Supplier" : "Add Supplier")</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudTextField T="string" Label="Name" @bind-Value="editModel.Name" Required="true" RequiredError="Name is required" Class="mb-4" />
+        <MudTextField T="string" Label="Contact Person" @bind-Value="editModel.ContactPerson" Class="mb-4" />
+        <MudTextField T="string" Label="Email" @bind-Value="editModel.Email" Class="mb-4" />
+        <MudTextField T="string" Label="Phone" @bind-Value="editModel.Phone" Class="mb-4" />
+        <MudTextField T="string" Label="Address" @bind-Value="editModel.Address" Lines="3" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="CloseDialog">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="SaveSupplier" Disabled="@isSaving">
+            @(isSaving ? "Saving..." : "Save")
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    private List<Supplier>? suppliers;
+    private List<Supplier>? filteredSuppliers;
+    private string searchTerm = "";
+    private string? successMessage;
+    private string? errorMessage;
+    private bool showDeleteDialog = false;
+    private Supplier deletingSupplier = new();
+
+    private bool dialogVisible = false;
+    private bool isEditing = false;
+    private bool isSaving = false;
+    private Supplier editModel = new();
+    private int? editingId;
+
+    private readonly DialogOptions dialogOptions = new() { MaxWidth = MaxWidth.Small, FullWidth = true };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadSuppliers();
+    }
+
+    private async Task LoadSuppliers()
+    {
+        suppliers = await SupplierService.GetAllSuppliersAsync();
+        FilterSuppliers();
+    }
+
+    private void FilterSuppliers()
+    {
+        if (suppliers == null) return;
+
+        var query = suppliers.AsEnumerable();
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(s =>
+                s.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                (s.ContactPerson != null && s.ContactPerson.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                (s.Email != null && s.Email.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        filteredSuppliers = query.ToList();
+    }
+
+    private void OpenAddDialog()
+    {
+        isEditing = false;
+        editingId = null;
+        editModel = new Supplier();
+        dialogVisible = true;
+    }
+
+    private void OpenEditDialog(Supplier supplier)
+    {
+        isEditing = true;
+        editingId = supplier.Id;
+        editModel = new Supplier
+        {
+            Name = supplier.Name,
+            ContactPerson = supplier.ContactPerson,
+            Email = supplier.Email,
+            Phone = supplier.Phone,
+            Address = supplier.Address
+        };
+        dialogVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        dialogVisible = false;
+    }
+
+    private async Task SaveSupplier()
+    {
+        if (string.IsNullOrWhiteSpace(editModel.Name)) return;
+
+        try
+        {
+            isSaving = true;
+            errorMessage = null;
+
+            if (isEditing && editingId.HasValue)
+            {
+                var existing = await SupplierService.GetSupplierByIdAsync(editingId.Value);
+                if (existing != null)
+                {
+                    existing.Name = editModel.Name;
+                    existing.ContactPerson = editModel.ContactPerson;
+                    existing.Email = editModel.Email;
+                    existing.Phone = editModel.Phone;
+                    existing.Address = editModel.Address;
+                    await SupplierService.UpdateSupplierAsync(existing);
+                    successMessage = "Supplier updated successfully!";
+                }
+            }
+            else
+            {
+                await SupplierService.AddSupplierAsync(editModel);
+                successMessage = "Supplier added successfully!";
+            }
+
+            dialogVisible = false;
+            await LoadSuppliers();
+            _ = ClearMessage();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void DeleteSupplier(Supplier supplier)
+    {
+        deletingSupplier = supplier;
+        showDeleteDialog = true;
+    }
+
+    private void CloseDeleteDialog()
+    {
+        showDeleteDialog = false;
+        deletingSupplier = new();
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            await SupplierService.DeleteSupplierAsync(deletingSupplier.Id);
+            await LoadSuppliers();
+            successMessage = $"Supplier '{deletingSupplier.Name}' deleted successfully";
+            errorMessage = null;
+            CloseDeleteDialog();
+            StateHasChanged();
+            _ = ClearMessage();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to delete supplier: {ex.Message}";
+            successMessage = null;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ClearMessage()
+    {
+        await Task.Delay(3000);
+        successMessage = null;
+        errorMessage = null;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,92 @@
+@page "/"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Home</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        @* <MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8">
+            <MudCard>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h4">Welcome, @context.User.Identity.Name!</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+
+                    <div class="d-flex gap-2">
+                        <AuthorizeView Roles="Admin" Context="adminContext">
+                            <Authorized>
+                                <MudButton Variant="Variant.Filled" 
+                                           Color="Color.Primary" 
+                                           StartIcon="@Icons.Material.Filled.Inventory"
+                                           OnClick="GoToProducts">
+                                    Manage Products
+                                </MudButton>
+                            </Authorized>
+                            <NotAuthorized>
+                                <MudButton Variant="Variant.Filled" 
+                                           Color="Color.Primary" 
+                                           StartIcon="@Icons.Material.Filled.Inventory"
+                                           OnClick="GoToProducts">
+                                    View Products
+                                </MudButton>
+                            </NotAuthorized>
+                        </AuthorizeView>
+                        <MudButton Variant="Variant.Outlined" 
+                                   Color="Color.Primary" 
+                                   OnClick="() => Logout()">
+                            Logout
+                        </MudButton>
+                    </div>
+                </MudCardContent>
+            </MudCard>
+        </MudContainer> *@
+    </Authorized>
+    <NotAuthorized>
+        <MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8">
+            <MudCard>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h4">Welcome to Product Management</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText Typo="Typo.body1" Class="mb-4">
+                        Please log in to access the system.
+                    </MudText>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GoToLogin">
+                        Login
+                    </MudButton>
+                    <MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="GoToRegister" Class="ml-2">
+                        Register
+                    </MudButton>
+                </MudCardContent>
+            </MudCard>
+        </MudContainer>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    private void GoToLogin()
+    {
+        Navigation.NavigateTo("/login");
+    }
+
+    private void GoToProducts()
+    {
+        Navigation.NavigateTo("/products");
+    }
+
+    private void GoToRegister()
+    {
+        Navigation.NavigateTo("/register");
+    }
+
+    private async Task Logout()
+    {
+        await JSRuntime.InvokeVoidAsync("eval", "window.location.href = '/api/auth/logout-handler'");
+    }
+}

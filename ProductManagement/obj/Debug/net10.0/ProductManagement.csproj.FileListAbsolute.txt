@@ -1,0 +1,402 @@
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\appsettings.Development.json
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\appsettings.json
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.staticwebassets.runtime.json
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.staticwebassets.endpoints.json
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.exe
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.deps.json
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.runtimeconfig.json
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.pdb
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\MudBlazor.dll
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\EmbeddedAttribute.cs
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ValidatableTypeAttribute.cs
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.csproj.AssemblyReference.cache
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.AssemblyInfoInputs.cache
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.AssemblyInfo.cs
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.csproj.CoreCompileInputs.cache
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.MvcApplicationPartsAssemblyInfo.cache
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\Components\Layout\ReconnectModal.razor.rz.scp.css
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\bundle\ProductManagement.styles.css
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\projectbundle\ProductManagement.bundle.scp.css
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\tzxjg6is5z-{0}-o2b68hjqqd-o2b68hjqqd.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\0wz98yz2xy-{0}-8dleymzaev-8dleymzaev.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\o7k4cxtn0u-{0}-0ykner63ol-0ykner63ol.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\odlb975e4f-{0}-2jeq8efc6q-2jeq8efc6q.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\sai2s7aj13-{0}-ycbzh0sbjd-ycbzh0sbjd.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\evt7bz25nn-{0}-ax6tuj8tun-ax6tuj8tun.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\m0cmk0go7h-{0}-zr4b1gdhaw-zr4b1gdhaw.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\dpe7vilvv8-{0}-b05p0fvxt2-b05p0fvxt2.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\j39ox28t6r-{0}-b05p0fvxt2-b05p0fvxt2.gz
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.json
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.development.json
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\swae.build.ex.cache
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductM.8086A758.Up2Date
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.dll
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\refint\ProductManagement.dll
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.pdb
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.genruntimeconfig.cache
+C:\Projects Dev\ProductManagement\ProductManagement\obj\Debug\net10.0\ref\ProductManagement.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Humanizer.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Build.Locator.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Extensions.DependencyModel.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Mono.TextTemplating.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\MySqlConnector.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\System.CodeDom.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.AttributedModel.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Convention.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Hosting.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Runtime.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.TypedParts.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Projects Dev\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\appsettings.Development.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\appsettings.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.staticwebassets.runtime.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.staticwebassets.endpoints.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.exe
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.deps.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.runtimeconfig.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.pdb
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Humanizer.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Build.Locator.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Extensions.DependencyModel.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Mono.TextTemplating.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\MudBlazor.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\MySqlConnector.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\System.CodeDom.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.AttributedModel.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Convention.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Hosting.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Runtime.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.TypedParts.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\EmbeddedAttribute.cs
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ValidatableTypeAttribute.cs
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.csproj.AssemblyReference.cache
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.AssemblyInfoInputs.cache
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.AssemblyInfo.cs
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.MvcApplicationPartsAssemblyInfo.cache
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\Components\Layout\ReconnectModal.razor.rz.scp.css
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\bundle\ProductManagement.styles.css
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\projectbundle\ProductManagement.bundle.scp.css
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\odlb975e4f-{0}-2jeq8efc6q-2jeq8efc6q.gz
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\sai2s7aj13-{0}-ycbzh0sbjd-ycbzh0sbjd.gz
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\evt7bz25nn-{0}-ax6tuj8tun-ax6tuj8tun.gz
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\m0cmk0go7h-{0}-zr4b1gdhaw-zr4b1gdhaw.gz
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\dpe7vilvv8-{0}-b05p0fvxt2-b05p0fvxt2.gz
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\j39ox28t6r-{0}-b05p0fvxt2-b05p0fvxt2.gz
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.development.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\swae.build.ex.cache
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductM.8086A758.Up2Date
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\refint\ProductManagement.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.pdb
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.genruntimeconfig.cache
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\ref\ProductManagement.dll
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\tzxjg6is5z-{0}-nq21ts4qye-nq21ts4qye.gz
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\0wz98yz2xy-{0}-cf158k2j5i-cf158k2j5i.gz
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\o7k4cxtn0u-{0}-jsf39xodda-jsf39xodda.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\appsettings.Development.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\appsettings.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.staticwebassets.runtime.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.staticwebassets.endpoints.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.exe
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.deps.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.runtimeconfig.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ProductManagement.pdb
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Humanizer.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Build.Locator.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Mono.TextTemplating.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\MudBlazor.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\MySqlConnector.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\System.CodeDom.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.AttributedModel.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Convention.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Hosting.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.Runtime.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\System.Composition.TypedParts.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\EmbeddedAttribute.cs
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ValidatableTypeAttribute.cs
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.csproj.AssemblyReference.cache
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.AssemblyInfoInputs.cache
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.AssemblyInfo.cs
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.csproj.CoreCompileInputs.cache
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\Components\Layout\ReconnectModal.razor.rz.scp.css
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\bundle\ProductManagement.styles.css
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\scopedcss\projectbundle\ProductManagement.bundle.scp.css
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\tzxjg6is5z-{0}-nq21ts4qye-nq21ts4qye.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\0wz98yz2xy-{0}-cf158k2j5i-cf158k2j5i.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\o7k4cxtn0u-{0}-jsf39xodda-jsf39xodda.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\odlb975e4f-{0}-2jeq8efc6q-2jeq8efc6q.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\sai2s7aj13-{0}-ycbzh0sbjd-ycbzh0sbjd.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\evt7bz25nn-{0}-qcnkhbt5lj-qcnkhbt5lj.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\m0cmk0go7h-{0}-12rnbzdyyc-12rnbzdyyc.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\dpe7vilvv8-{0}-b05p0fvxt2-b05p0fvxt2.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\compressed\j39ox28t6r-{0}-b05p0fvxt2-b05p0fvxt2.gz
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.development.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\swae.build.ex.cache
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductM.8086A758.Up2Date
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\refint\ProductManagement.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.pdb
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ProductManagement.genruntimeconfig.cache
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\ref\ProductManagement.dll
+C:\Users\PC-11\Desktop\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\xampp\htdocs\ProductManagement\ProductManagement\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

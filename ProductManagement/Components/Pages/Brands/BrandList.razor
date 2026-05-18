@@ -1,0 +1,286 @@
+@page "/brands"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using ProductManagement.Features.Data.Models
+@inject IBrandService BrandService
+@inject IDialogService DialogService
+
+<PageTitle>Brands</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudCard>
+        <MudCardHeader>
+            <div class="d-flex justify-space-between align-center" style="width:100%">
+                <MudText Typo="Typo.h5">Brand Management</MudText>
+                <AuthorizeView Roles="Admin">
+                    <Authorized>
+                        <MudButton Variant="Variant.Filled" 
+                                   Color="Color.Primary" 
+                                   StartIcon="@Icons.Material.Filled.Add"
+                                   OnClick="OpenAddDialog">
+                            Add Brand
+                        </MudButton>
+                    </Authorized>
+                </AuthorizeView>
+            </div>
+        </MudCardHeader>
+        <MudCardContent>
+            <!-- Search -->
+            <div class="d-flex gap-4 mb-4">
+                <MudTextField T="string" 
+                             Label="Search brands..." 
+                             @bind-Value="searchTerm" 
+                             Immediate="true"
+                             Variant="Variant.Outlined"
+                             Adornment="Adornment.Start"
+                             AdornmentIcon="@Icons.Material.Filled.Search"
+                             Class="flex-grow-1" />
+            </div>
+
+            @if (filteredBrands == null)
+            {
+                <MudProgressLinear Indeterminate="true" />
+            }
+            else if (filteredBrands.Count == 0)
+            {
+                <MudAlert Severity="Severity.Info">
+                    No brands found.
+                </MudAlert>
+            }
+            else
+            {
+                <MudTable Items="@filteredBrands" 
+                          Hover="true" 
+                          Striped="true"
+                          Dense="true">
+                    <HeaderContent>
+                        <MudTh>Name</MudTh>
+                        <MudTh>Description</MudTh>
+                        <MudTh>Created</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Name">@context.Name</MudTd>
+                        <MudTd DataLabel="Description">@(context.Description ?? "—")</MudTd>
+                        <MudTd DataLabel="Created">@context.CreatedAt.ToString("MM/dd/yyyy")</MudTd>
+                        <MudTd DataLabel="Actions">
+                            <AuthorizeView Roles="Admin" Context="authContext">
+                                <Authorized>
+                                    <div class="d-flex gap-2">
+                                        <MudButton Size="Size.Small" 
+                                                   Variant="Variant.Outlined" 
+                                                   Color="Color.Primary"
+                                                   StartIcon="@Icons.Material.Filled.Edit"
+                                                   OnClick="() => OpenEditDialog(context)">
+                                            Edit
+                                        </MudButton>
+                                        <MudButton Size="Size.Small" 
+                                                   Variant="Variant.Outlined" 
+                                                   Color="Color.Error"
+                                                   StartIcon="@Icons.Material.Filled.Delete"
+                                                   OnClick="() => DeleteBrand(context)">
+                                            Delete
+                                        </MudButton>
+                                    </div>
+                                </Authorized>
+                                
+                            </AuthorizeView>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-4">@successMessage</MudAlert>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mt-4">@errorMessage</MudAlert>
+}
+
+<!-- Delete Confirmation Dialog -->
+<MudDialog @bind-Visible="showDeleteDialog" Options="new DialogOptions { CloseButton = false, FullWidth = true, MaxWidth = MaxWidth.ExtraSmall }">
+    <TitleContent>
+        <MudText Typo="Typo.h6">Delete Brand</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText>
+            Are you sure you want to delete brand '@deletingBrand.Name'? This action cannot be undone.
+        </MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="CloseDeleteDialog">Cancel</MudButton>
+        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="@(async () => await ConfirmDelete())">Delete</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<!-- Add/Edit Dialog -->
+<MudDialog @bind-Visible="dialogVisible" Options="dialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">@(isEditing ? "Edit Brand" : "Add Brand")</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudTextField T="string" Label="Name" @bind-Value="editModel.Name" Required="true" RequiredError="Name is required" Class="mb-4" />
+        <MudTextField T="string" Label="Description" @bind-Value="editModel.Description" Lines="3" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="CloseDialog">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="SaveBrand" Disabled="@isSaving">
+            @(isSaving ? "Saving..." : "Save")
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    private List<Brand>? brands;
+    private List<Brand>? filteredBrands;
+    private string searchTerm = "";
+    private string? successMessage;
+    private string? errorMessage;
+    private bool showDeleteDialog = false;
+    private Brand deletingBrand = new();
+
+    private bool dialogVisible = false;
+    private bool isEditing = false;
+    private bool isSaving = false;
+    private Brand editModel = new();
+    private int? editingId;
+
+    private readonly DialogOptions dialogOptions = new() { MaxWidth = MaxWidth.Small, FullWidth = true };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadBrands();
+    }
+
+    private async Task LoadBrands()
+    {
+        brands = await BrandService.GetAllBrandsAsync();
+        FilterBrands();
+    }
+
+    private void FilterBrands()
+    {
+        if (brands == null) return;
+
+        var query = brands.AsEnumerable();
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(b =>
+                b.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                (b.Description != null && b.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        filteredBrands = query.ToList();
+    }
+
+    private void OpenAddDialog()
+    {
+        isEditing = false;
+        editingId = null;
+        editModel = new Brand();
+        dialogVisible = true;
+    }
+
+    private void OpenEditDialog(Brand brand)
+    {
+        isEditing = true;
+        editingId = brand.Id;
+        editModel = new Brand
+        {
+            Name = brand.Name,
+            Description = brand.Description
+        };
+        dialogVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        dialogVisible = false;
+    }
+
+    private async Task SaveBrand()
+    {
+        if (string.IsNullOrWhiteSpace(editModel.Name)) return;
+
+        try
+        {
+            isSaving = true;
+            errorMessage = null;
+
+            if (isEditing && editingId.HasValue)
+            {
+                var existing = await BrandService.GetBrandByIdAsync(editingId.Value);
+                if (existing != null)
+                {
+                    existing.Name = editModel.Name;
+                    existing.Description = editModel.Description;
+                    await BrandService.UpdateBrandAsync(existing);
+                    successMessage = "Brand updated successfully!";
+                }
+            }
+            else
+            {
+                await BrandService.AddBrandAsync(editModel);
+                successMessage = "Brand added successfully!";
+            }
+
+            dialogVisible = false;
+            await LoadBrands();
+            _ = ClearMessage();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void DeleteBrand(Brand brand)
+    {
+        deletingBrand = brand;
+        showDeleteDialog = true;
+    }
+
+    private void CloseDeleteDialog()
+    {
+        showDeleteDialog = false;
+        deletingBrand = new();
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            await BrandService.DeleteBrandAsync(deletingBrand.Id);
+            await LoadBrands();
+            successMessage = $"Brand '{deletingBrand.Name}' deleted successfully";
+            errorMessage = null;
+            CloseDeleteDialog();
+            StateHasChanged();
+            _ = ClearMessage();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to delete brand: {ex.Message}";
+            successMessage = null;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ClearMessage()
+    {
+        await Task.Delay(3000);
+        successMessage = null;
+        errorMessage = null;
+        StateHasChanged();
+    }
+}

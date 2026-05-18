@@ -1,0 +1,303 @@
+@page "/admin/users"
+@attribute [Authorize(Policy = "AdminOnly")]
+@using Microsoft.AspNetCore.Authorization
+@using ProductManagement.Features.Data.Models
+@using ProductManagement.Features.Data.Enums
+@using MudBlazor
+@inject IUserService UserService
+@inject IUserActivityLogService ActivityLogService
+@inject NavigationManager Navigation
+
+<style>
+    .mud-table-row:hover {
+        background-color: var(--mud-palette-surface) !important;
+    }
+    .mud-table-row {
+        background-color: var(--mud-palette-surface) !important;
+    }
+</style>
+
+<PageTitle>User Management</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudCard>
+        <MudCardHeader>
+            <div class="d-flex justify-space-between align-center">
+                <MudText Typo="Typo.h5">User Management</MudText>
+                <MudButton Variant="Variant.Filled" 
+                           Color="Color.Primary" 
+                           Style="margin-left:20px"
+                           StartIcon="@Icons.Material.Filled.Refresh"
+                           OnClick="LoadUsers">
+                    Refresh
+                </MudButton>
+            </div>
+        </MudCardHeader>
+        <MudCardContent>
+            <!-- Users Table -->
+            @if (users == null)
+            {
+                <MudProgressLinear Indeterminate="true" Color="Color.Primary" Class="my-4" />
+            }
+            else if (users.Count == 0)
+            {
+                <MudAlert Severity="Severity.Info">
+                    No users found.
+                </MudAlert>
+            }
+            else
+            {
+                <MudTable Items="@users" 
+                          Breakpoint="Breakpoint.Md"
+                          Striped="true"
+                          Dense="true">
+                    <HeaderContent>
+                        <MudTh>ID</MudTh>
+                        <MudTh>Username</MudTh>
+                        <MudTh>Email</MudTh>
+                        <MudTh>Name</MudTh>
+                        <MudTh>Role</MudTh>
+                        <MudTh>Actions</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Id">@context.Id</MudTd>
+                        <MudTd DataLabel="Username">@context.Username</MudTd>
+                        <MudTd DataLabel="Email">@context.Email</MudTd>
+                        <MudTd DataLabel="Name">@context.Name</MudTd>
+                        <MudTd DataLabel="Role">
+                            @if (editingUserId == context.Id)
+                            {
+                                <MudSelect T="string" @bind-Value="context.Role" Dense="true">
+                                    <MudSelectItem Value="@("User")">User</MudSelectItem>
+                                    <MudSelectItem Value="@("Admin")">Admin</MudSelectItem>
+                                </MudSelect>
+                            }
+                            else
+                            {
+                                <MudChip Color="@GetRoleColor(context.Role)" 
+                                        Size="Size.Small" 
+                                        T="string">
+                                    @context.Role
+                                </MudChip>
+                            }
+                        </MudTd>
+                        <MudTd DataLabel="Actions">
+                            <div class="d-flex gap-2">
+                                @if (editingUserId == context.Id)
+                                {
+                                    <MudButton Size="Size.Small" 
+                                               Variant="Variant.Filled" 
+                                               Color="Color.Success"
+                                               OnClick="() => SaveInlineEdit(context)">
+                                        Save
+                                    </MudButton>
+                                    <MudButton Size="Size.Small" 
+                                               Variant="Variant.Outlined" 
+                                               Color="Color.Secondary"
+                                               OnClick="CancelInlineEdit">
+                                        Cancel
+                                    </MudButton>
+                                }
+                                else
+                                {
+                                    <MudButton Size="Size.Small" 
+                                               Variant="Variant.Outlined" 
+                                               Color="Color.Primary"
+                                               StartIcon="@Icons.Material.Filled.Edit"
+                                               OnClick="() => StartInlineEdit(context)">
+                                        Edit
+                                    </MudButton>
+                                    <MudButton Size="Size.Small" 
+                                               Variant="Variant.Outlined" 
+                                               Color="Color.Info"
+                                               StartIcon="@Icons.Material.Filled.History"
+                                               OnClick="() => ShowActivityLogsDialog(context.Id)">
+                                        Logs
+                                    </MudButton>
+                                    <MudButton Size="Size.Small" 
+                                               Variant="Variant.Outlined" 
+                                               Color="Color.Error"
+                                               StartIcon="@Icons.Material.Filled.Delete"
+                                               OnClick="() => DeleteUser(context)">
+                                        Delete
+                                    </MudButton>
+                                }
+                            </div>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+<!-- Activity Logs Dialog -->
+@if (showLogsDialog)
+{
+    <MudOverlay DarkBackground="true" ZIndex="9999">
+        <MudPaper Class="pa-4" Style="max-width: 800px; margin: auto; max-height: 80vh; overflow-y: auto; background-color: var(--mud-palette-background);">
+            <MudText Typo="Typo.h6" Class="mb-4">Activity Logs</MudText>
+            <ActivityLogsDialog UserId="@selectedUserId" />
+            <div Class="d-flex justify-end mt-4">
+                <MudButton OnClick="CloseLogsDialog">Close</MudButton>
+            </div>
+        </MudPaper>
+    </MudOverlay>
+}
+
+<!-- Delete Confirmation Dialog -->
+<MudDialog @bind-Visible="showDeleteDialog" Options="new DialogOptions { CloseButton = false, FullWidth = true, MaxWidth = MaxWidth.ExtraSmall }">
+    <TitleContent>
+        <MudText Typo="Typo.h6">Delete User</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText>
+            Are you sure you want to delete user '@deletingUser.Username'? This action cannot be undone.
+        </MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="CloseDeleteDialog">Cancel</MudButton>
+        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="@(async () => await ConfirmDelete())">Delete</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-4">@successMessage</MudAlert>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mt-4">@errorMessage</MudAlert>
+}
+
+@code {
+    private List<User>? users;
+    private string? successMessage;
+    private string? errorMessage;
+    private Roles currentUserRole = Roles.User;
+    private string currentUsername = "";
+    
+    private bool showLogsDialog = false;
+    private bool showDeleteDialog = false;
+    private int editingUserId = 0;
+    private User deletingUser = new();
+    private int selectedUserId = 0;
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUsers();
+        await LoadCurrentUser();
+    }
+
+    private async Task LoadUsers()
+    {
+        users = await UserService.GetAllUsers();
+    }
+
+    private async Task LoadCurrentUser()
+    {
+        if (authenticationState != null)
+        {
+            var state = await authenticationState;
+            var user = state.User;
+            if (user.Identity?.IsAuthenticated == true)
+            {
+                var roleClaim = user.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+                if (Enum.TryParse<Roles>(roleClaim, out var role))
+                {
+                    currentUserRole = role;
+                }
+                currentUsername = user.Identity.Name ?? "";
+            }
+        }
+    }
+
+    private Color GetRoleColor(string role)
+    {
+        return role == "Admin" ? Color.Primary : Color.Default;
+    }
+
+    private void StartInlineEdit(User user)
+    {
+        editingUserId = user.Id;
+    }
+
+    private void CancelInlineEdit()
+    {
+        editingUserId = 0;
+    }
+
+    private async Task SaveInlineEdit(User user)
+    {
+        try
+        {
+            await UserService.UpdateUser(user);
+            await LoadUsers();
+            successMessage = $"User '{user.Username}' updated successfully";
+            errorMessage = null;
+            editingUserId = 0;
+            await Task.Delay(2000);
+            successMessage = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to update user: {ex.Message}";
+            successMessage = null;
+        }
+    }
+
+    private void ShowActivityLogsDialog(int userId)
+    {
+        selectedUserId = userId;
+        showLogsDialog = true;
+    }
+
+    private void CloseLogsDialog()
+    {
+        showLogsDialog = false;
+        selectedUserId = 0;
+    }
+
+    private void ShowDeleteDialog(User user)
+    {
+        deletingUser = user;
+        showDeleteDialog = true;
+    }
+
+    private void CloseDeleteDialog()
+    {
+        showDeleteDialog = false;
+        deletingUser = new();
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            await UserService.DeleteUser(deletingUser.Id);
+            await LoadUsers();
+            successMessage = $"User '{deletingUser.Username}' deleted successfully";
+            errorMessage = null;
+            CloseDeleteDialog();
+            StateHasChanged();
+            await Task.Delay(2000);
+            successMessage = null;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to delete user: {ex.Message}";
+            successMessage = null;
+            StateHasChanged();
+        }
+    }
+
+    private async Task DeleteUser(User user)
+    {
+        ShowDeleteDialog(user);
+    }
+}

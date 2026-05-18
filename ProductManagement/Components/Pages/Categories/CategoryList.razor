@@ -1,0 +1,285 @@
+@page "/categories"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using ProductManagement.Features.Data.Models
+@inject ICategoryService CategoryService
+@inject IDialogService DialogService
+
+<PageTitle>Categories</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudCard>
+        <MudCardHeader>
+            <div class="d-flex justify-space-between align-center" style="width:100%">
+                <MudText Typo="Typo.h5">Category Management</MudText>
+                <AuthorizeView Roles="Admin">
+                    <Authorized>
+                        <MudButton Variant="Variant.Filled" 
+                                   Color="Color.Primary" 
+                                   StartIcon="@Icons.Material.Filled.Add"
+                                   OnClick="OpenAddDialog">
+                            Add Category
+                        </MudButton>
+                    </Authorized>
+                </AuthorizeView>
+            </div>
+        </MudCardHeader>
+        <MudCardContent>
+            <!-- Search -->
+            <div class="d-flex gap-4 mb-4">
+                <MudTextField T="string" 
+                             Label="Search categories..." 
+                             @bind-Value="searchTerm" 
+                             Immediate="true"
+                             Variant="Variant.Outlined"
+                             Adornment="Adornment.Start"
+                             AdornmentIcon="@Icons.Material.Filled.Search"
+                             Class="flex-grow-1" />
+            </div>
+
+            @if (filteredCategories == null)
+            {
+                <MudProgressLinear Indeterminate="true" />
+            }
+            else if (filteredCategories.Count == 0)
+            {
+                <MudAlert Severity="Severity.Info">
+                    No categories found.
+                </MudAlert>
+            }
+            else
+            {
+                <MudTable Items="@filteredCategories" 
+                          Hover="true" 
+                          Striped="true"
+                          Dense="true">
+                    <HeaderContent>
+                        <MudTh>Name</MudTh>
+                        <MudTh>Description</MudTh>
+                        <MudTh>Created</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Name">@context.Name</MudTd>
+                        <MudTd DataLabel="Description">@(context.Description ?? "—")</MudTd>
+                        <MudTd DataLabel="Created">@context.CreatedAt.ToString("MM/dd/yyyy")</MudTd>
+                        <MudTd DataLabel="Actions">
+                            <AuthorizeView Roles="Admin" Context="authContext">
+                                <Authorized>
+                                    <div class="d-flex gap-2">
+                                        <MudButton Size="Size.Small" 
+                                                   Variant="Variant.Outlined" 
+                                                   Color="Color.Primary"
+                                                   StartIcon="@Icons.Material.Filled.Edit"
+                                                   OnClick="() => OpenEditDialog(context)">
+                                            Edit
+                                        </MudButton>
+                                        <MudButton Size="Size.Small" 
+                                                   Variant="Variant.Outlined" 
+                                                   Color="Color.Error"
+                                                   StartIcon="@Icons.Material.Filled.Delete"
+                                                   OnClick="() => DeleteCategory(context)">
+                                            Delete
+                                        </MudButton>
+                                    </div>
+                                </Authorized>
+                            </AuthorizeView>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-4">@successMessage</MudAlert>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mt-4">@errorMessage</MudAlert>
+}
+
+<!-- Delete Confirmation Dialog -->
+<MudDialog @bind-Visible="showDeleteDialog" Options="new DialogOptions { CloseButton = false, FullWidth = true, MaxWidth = MaxWidth.ExtraSmall }">
+    <TitleContent>
+        <MudText Typo="Typo.h6">Delete Category</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText>
+            Are you sure you want to delete category '@deletingCategory.Name'? This action cannot be undone.
+        </MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="CloseDeleteDialog">Cancel</MudButton>
+        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="@(async () => await ConfirmDelete())">Delete</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<!-- Add/Edit Dialog -->
+<MudDialog @bind-Visible="dialogVisible" Options="dialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">@(isEditing ? "Edit Category" : "Add Category")</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudTextField T="string" Label="Name" @bind-Value="editModel.Name" Required="true" RequiredError="Name is required" Class="mb-4" />
+        <MudTextField T="string" Label="Description" @bind-Value="editModel.Description" Lines="3" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="CloseDialog">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="SaveCategory" Disabled="@isSaving">
+            @(isSaving ? "Saving..." : "Save")
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    private List<Category>? categories;
+    private List<Category>? filteredCategories;
+    private string searchTerm = "";
+    private string? successMessage;
+    private string? errorMessage;
+    private bool showDeleteDialog = false;
+    private Category deletingCategory = new();
+
+    private bool dialogVisible = false;
+    private bool isEditing = false;
+    private bool isSaving = false;
+    private Category editModel = new();
+    private int? editingId;
+
+    private readonly DialogOptions dialogOptions = new() { MaxWidth = MaxWidth.Small, FullWidth = true };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCategories();
+    }
+
+    private async Task LoadCategories()
+    {
+        categories = await CategoryService.GetAllCategoriesAsync();
+        FilterCategories();
+    }
+
+    private void FilterCategories()
+    {
+        if (categories == null) return;
+
+        var query = categories.AsEnumerable();
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(c =>
+                c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                (c.Description != null && c.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        filteredCategories = query.ToList();
+    }
+
+    private void OpenAddDialog()
+    {
+        isEditing = false;
+        editingId = null;
+        editModel = new Category();
+        dialogVisible = true;
+    }
+
+    private void OpenEditDialog(Category category)
+    {
+        isEditing = true;
+        editingId = category.Id;
+        editModel = new Category
+        {
+            Name = category.Name,
+            Description = category.Description
+        };
+        dialogVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        dialogVisible = false;
+    }
+
+    private async Task SaveCategory()
+    {
+        if (string.IsNullOrWhiteSpace(editModel.Name)) return;
+
+        try
+        {
+            isSaving = true;
+            errorMessage = null;
+
+            if (isEditing && editingId.HasValue)
+            {
+                var existing = await CategoryService.GetCategoryByIdAsync(editingId.Value);
+                if (existing != null)
+                {
+                    existing.Name = editModel.Name;
+                    existing.Description = editModel.Description;
+                    await CategoryService.UpdateCategoryAsync(existing);
+                    successMessage = "Category updated successfully!";
+                }
+            }
+            else
+            {
+                await CategoryService.AddCategoryAsync(editModel);
+                successMessage = "Category added successfully!";
+            }
+
+            dialogVisible = false;
+            await LoadCategories();
+            _ = ClearMessage();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void DeleteCategory(Category category)
+    {
+        deletingCategory = category;
+        showDeleteDialog = true;
+    }
+
+    private void CloseDeleteDialog()
+    {
+        showDeleteDialog = false;
+        deletingCategory = new();
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            await CategoryService.DeleteCategoryAsync(deletingCategory.Id);
+            await LoadCategories();
+            successMessage = $"Category '{deletingCategory.Name}' deleted successfully";
+            errorMessage = null;
+            CloseDeleteDialog();
+            StateHasChanged();
+            _ = ClearMessage();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to delete category: {ex.Message}";
+            successMessage = null;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ClearMessage()
+    {
+        await Task.Delay(3000);
+        successMessage = null;
+        errorMessage = null;
+        StateHasChanged();
+    }
+}

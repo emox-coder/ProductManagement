@@ -1,0 +1,8 @@
+wwwroot\favicon.ico
+Components\Layout\ReconnectModal.razor.js
+C:\Users\brojo\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.3\build\..\_framework\blazor.web.js
+C:\Users\brojo\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.3\build\..\_framework\blazor.server.js
+C:\Users\brojo\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.3\_framework\blazor.server.js
+C:\Users\brojo\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.3\_framework\blazor.web.js
+C:\xampp\htdocs\ProductManagement\ProductManagement\Components\Layout\ReconnectModal.razor.js
+C:\xampp\htdocs\ProductManagement\ProductManagement\wwwroot\favicon.ico

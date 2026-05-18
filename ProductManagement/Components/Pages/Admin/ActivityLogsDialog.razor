@@ -1,0 +1,69 @@
+@using ProductManagement.Features.Data.Models
+@using MudBlazor
+
+@if (logs == null)
+{
+    <div class="d-flex justify-center">
+        <MudProgressCircular Indeterminate="true" Color="Color.Primary" />
+    </div>
+}
+else if (logs.Count == 0)
+{
+    <MudAlert Severity="Severity.Info">
+        No activity logs found for this user.
+    </MudAlert>
+}
+else
+{
+    <MudTable Items="@logs" 
+              Hover="true" 
+              Breakpoint="Breakpoint.Sm"
+              Dense="true"
+              Elevation="0">
+        <HeaderContent>
+            <MudTh>Action</MudTh>
+            <MudTh>Description</MudTh>
+            <MudTh>IP Address</MudTh>
+            <MudTh>Date</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Action">
+                <MudChip Color="@GetActionColor(context.Action)" 
+                        Size="Size.Small" 
+                        T="string">
+                    @context.Action
+                </MudChip>
+            </MudTd>
+            <MudTd DataLabel="Description">@context.Description</MudTd>
+            <MudTd DataLabel="IpAddress">@context.IpAddress ?? "N/A"</MudTd>
+            <MudTd DataLabel="CreatedAt">@context.CreatedAt.ToString("MM/dd/yyyy HH:mm:ss")</MudTd>
+        </RowTemplate>
+    </MudTable>
+}
+
+@code {
+    [Parameter]
+    public int UserId { get; set; }
+
+    [Inject]
+    private IUserActivityLogService ActivityLogService { get; set; } = null!;
+
+    private List<UserActivityLog>? logs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        logs = await ActivityLogService.GetLogsByUserIdAsync(UserId);
+    }
+
+    private Color GetActionColor(string action)
+    {
+        return action switch
+        {
+            "Login" => Color.Success,
+            "Register" => Color.Info,
+            "Update" => Color.Warning,
+            "Delete" => Color.Error,
+            _ => Color.Default
+        };
+    }
+}

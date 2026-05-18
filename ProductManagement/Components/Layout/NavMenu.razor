@@ -1,0 +1,30 @@
+@using Microsoft.AspNetCore.Authorization
+@using MudBlazor
+
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+    
+    <AuthorizeView Roles="User">
+        <Authorized>
+           
+                <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Products List</MudNavLink>
+                <MudNavLink Href="/categories" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Category">Categories</MudNavLink>
+                <MudNavLink Href="/brands" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Bookmark">Brands</MudNavLink>
+                <MudNavLink Href="/suppliers" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LocalShipping">Suppliers</MudNavLink>
+            
+        </Authorized>
+    </AuthorizeView>
+
+    <AuthorizeView Roles="Admin">
+        <Authorized>
+            <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Products List</MudNavLink>
+            <MudNavLink Href="/categories" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Category">Categories</MudNavLink>
+            <MudNavLink Href="/brands" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Bookmark">Brands</MudNavLink>
+            <MudNavLink Href="/suppliers" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LocalShipping">Suppliers</MudNavLink>
+            
+            <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.AdminPanelSettings">
+                <MudNavLink Href="/admin/users" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">User Management</MudNavLink>
+            </MudNavGroup>
+        </Authorized>
+    </AuthorizeView>
+</MudNavMenu>

@@ -1,0 +1,244 @@
+@page "/products/add"
+@page "/products/edit/{id:int}"
+@attribute [Authorize(Roles = "Admin")]
+@using Microsoft.AspNetCore.Authorization
+@using ProductManagement.Features.Data.Models
+@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@inject IBrandService BrandService
+@inject ISupplierService SupplierService
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
+
+<PageTitle>@(isEditing ? "Edit Product" : "Add Product")</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
+    <MudCard>
+        <MudCardHeader>
+            <MudText Typo="Typo.h5">@(isEditing ? "Edit Product" : "Add New Product")</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudForm @ref="form" Model="@product" Validation="@validationRules">
+                <MudGrid>
+                    <MudItem xs="12" md="6">
+                        <MudTextField T="string" 
+                                     Label="Product Name" 
+                                     @bind-Value="product.Name" 
+                                     For="@(() => product.Name)"
+                                     Required="true"
+                                     RequiredError="Product name is required"
+                                     MaxLength="200" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudSelect T="int?" 
+                                  Label="Category" 
+                                  @bind-Value="product.CategoryId">
+                            <MudSelectItem T="int?" Value="@((int?)null)">-- None --</MudSelectItem>
+                            @if (categories != null)
+                            {
+                                @foreach (var cat in categories)
+                                {
+                                    <MudSelectItem T="int?" Value="@((int?)cat.Id)">@cat.Name</MudSelectItem>
+                                }
+                            }
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudSelect T="int?" 
+                                  Label="Brand" 
+                                  @bind-Value="product.BrandId">
+                            <MudSelectItem T="int?" Value="@((int?)null)">-- None --</MudSelectItem>
+                            @if (brands != null)
+                            {
+                                @foreach (var brand in brands)
+                                {
+                                    <MudSelectItem T="int?" Value="@((int?)brand.Id)">@brand.Name</MudSelectItem>
+                                }
+                            }
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudSelect T="int?" 
+                                  Label="Supplier" 
+                                  @bind-Value="product.SupplierId">
+                            <MudSelectItem T="int?" Value="@((int?)null)">-- None --</MudSelectItem>
+                            @if (suppliers != null)
+                            {
+                                @foreach (var supplier in suppliers)
+                                {
+                                    <MudSelectItem T="int?" Value="@((int?)supplier.Id)">@supplier.Name</MudSelectItem>
+                                }
+                            }
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudTextField T="string" 
+                                     Label="Description" 
+                                     @bind-Value="product.Description" 
+                                     For="@(() => product.Description)"
+                                     Multiline="true"
+                                     Rows="4"
+                                     MaxLength="1000" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudNumericField T="decimal" 
+                                          Label="Price" 
+                                          @bind-Value="product.Price" 
+                                          For="@(() => product.Price)"
+                                          Required="true"
+                                          RequiredError="Price is required"
+                                          Min="0"
+                                          Step="0.01m"
+                                          Decimals="2" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudNumericField T="int" 
+                                          Label="Stock Quantity" 
+                                          @bind-Value="product.StockQuantity" 
+                                          For="@(() => product.StockQuantity)"
+                                          Required="true"
+                                          RequiredError="Stock quantity is required"
+                                          Min="0" />
+                    </MudItem>
+                </MudGrid>
+            </MudForm>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Text" 
+                       OnClick="Cancel">
+                Cancel
+            </MudButton>
+            <MudButton Variant="Variant.Filled" 
+                       Color="Color.Primary" 
+                       OnClick="SaveProduct"
+                       Disabled="@isSaving">
+                @(isSaving ? "Saving..." : (isEditing ? "Update" : "Add"))
+            </MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudContainer>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mt-4">
+        @errorMessage
+    </MudAlert>
+}
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-4">
+        @successMessage
+    </MudAlert>
+}
+
+@code {
+    [Parameter]
+    public int? id { get; set; }
+
+    private MudForm? form;
+    private Product product = new();
+    private List<Category>? categories;
+    private List<Brand>? brands;
+    private List<Supplier>? suppliers;
+    private bool isEditing = false;
+    private bool isSaving = false;
+    private string? errorMessage;
+    private string? successMessage;
+
+    private readonly Func<Product, IEnumerable<string>> validationRules = product =>
+    {
+        var errors = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(product.Name))
+            errors.Add("Product name is required");
+
+        if (product.Price <= 0)
+            errors.Add("Price must be greater than 0");
+
+        if (product.StockQuantity < 0)
+            errors.Add("Stock quantity cannot be negative");
+
+        return errors;
+    };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        categories = await CategoryService.GetAllCategoriesAsync();
+        brands = await BrandService.GetAllBrandsAsync();
+        suppliers = await SupplierService.GetAllSuppliersAsync();
+        await LoadProduct();
+    }
+
+    private async Task LoadProduct()
+    {
+        // Clear any previous messages
+        errorMessage = null;
+        successMessage = null;
+
+        if (id.HasValue)
+        {
+            isEditing = true;
+            var existingProduct = await ProductService.GetProductByIdAsync(id.Value);
+            if (existingProduct != null)
+            {
+                product = existingProduct;
+            }
+            else
+            {
+                errorMessage = "Product not found";
+            }
+        }
+        else
+        {
+            isEditing = false;
+            product = new Product();
+        }
+    }
+
+    private async Task SaveProduct()
+    {
+        if (form != null)
+        {
+            await form.ValidateAsync();
+        }
+
+        if (form?.IsValid != true)
+        {
+            return;
+        }
+
+        try
+        {
+            isSaving = true;
+            errorMessage = null;
+            successMessage = null;
+
+            if (isEditing)
+            {
+                await ProductService.UpdateProductAsync(product);
+                Snackbar.Add("Product updated successfully!", Severity.Success);
+            }
+            else
+            {
+                await ProductService.AddProductAsync(product);
+                Snackbar.Add("Product added successfully!", Severity.Success);
+            }
+
+            Navigation.NavigateTo("/products");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancel()
+    {
+        Navigation.NavigateTo("/products");
+    }
+}

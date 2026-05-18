@@ -1,0 +1,76 @@
+@using ProductManagement.Features.Data.Models
+@using ProductManagement.Features.Data.Enums
+@using MudBlazor
+
+<MudForm @ref="form" Model="@user" Validation="@validationRules">
+    <MudTextField T="string" 
+                 Label="Username" 
+                 @bind-Value="user.Username" 
+                 For="@(() => user.Username)"
+                 Required="true"
+                 RequiredError="Username is required"
+                 Disabled="true"
+                 MaxLength="100" />
+    
+    <MudTextField T="string" 
+                 Label="Email" 
+                 @bind-Value="user.Email" 
+                 For="@(() => user.Email)"
+                 Required="true"
+                 RequiredError="Email is required"
+                 MaxLength="100" />
+    
+    <MudTextField T="string" 
+                 Label="Name" 
+                 @bind-Value="user.Name" 
+                 For="@(() => user.Name)"
+                 MaxLength="100" />
+    
+    <MudSelect T="string" 
+              Label="Role" 
+              @bind-Value="user.Role" 
+              For="@(() => user.Role)">
+        <MudSelectItem Value="@("User")">User</MudSelectItem>
+        <MudSelectItem Value="@("Admin")">Admin</MudSelectItem>
+    </MudSelect>
+</MudForm>
+
+@code {
+    [Parameter]
+    public User User { get; set; } = new();
+
+    private MudForm? form;
+    private User user = new();
+
+    private readonly Func<User, IEnumerable<string>> validationRules = user =>
+    {
+        var errors = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(user.Username))
+            errors.Add("Username is required");
+
+        if (string.IsNullOrWhiteSpace(user.Email))
+            errors.Add("Email is required");
+
+        return errors;
+    };
+
+    protected override void OnParametersSet()
+    {
+        user = User;
+    }
+
+    public async Task<bool> ValidateForm()
+    {
+        if (form != null)
+        {
+            await form.ValidateAsync();
+        }
+        return form?.IsValid == true;
+    }
+
+    public User GetUser()
+    {
+        return user;
+    }
+}
